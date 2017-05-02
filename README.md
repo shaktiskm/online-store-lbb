@@ -1,4 +1,4 @@
-# ch-node-bridge
+# online-store-lbb
 
 
 ## Setup
