@@ -137,7 +137,7 @@
     // "no-mixed-requires": 2,                     // - disallow mixing regular variable and require declarations
     "no-new-require": 2,                        // - disallow use of new operator with the require function
     "no-path-concat": 2,                        // - disallow string concatenation with __dirname and __filename
-    "no-process-exit": 2,                       // - disallow process.exit()
+    "no-process-exit": 0,                       // - disallow process.exit()
     "no-restricted-modules": 2,                 // - restrict usage of specified node modules
     "no-sync": 2,                               // - disallow use of synchronous methods
 
