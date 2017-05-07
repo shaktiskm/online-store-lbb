@@ -5,7 +5,8 @@ const express = require("express"),
   ApiError = require("./util/apiError"),
   mwAllowCrossDomain = require("./middleware_services/mwAllowCrossDomain"),
   mwAuthenticateRequest = require("./middleware_services/mwAuthenticateRequest"),
-  mwErrorHandler = require("./middleware_services/mwErrorHandler");
+  mwErrorHandler = require("./middleware_services/mwErrorHandler"),
+  problem2Router = require("./endpoints/problem2");
 
 let {NODE_ENV} = process.env,
   nodeEnv = NODE_ENV || "local",
@@ -31,10 +32,11 @@ app.get(`${urlPrefix}/healthcheck`, (req, res) => {
   res.send({"msg": "OK"});
 });
 
-app.use(mwAuthenticateRequest);
-
 // App routes here
 
+app.use("/problem2", problem2Router);
+
+app.use(mwAuthenticateRequest);
 
 app.use((req, res, next) => {
   let apiError = new ApiError("NotFound", "Resource doesn't exist", "", 404);
