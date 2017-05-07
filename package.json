@@ -24,9 +24,10 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "is-my-json-valid": "^2.16.0",
     "jsonwebtoken": "^7.4.0",
     "method-override": "^2.3.8",
-    "mongodb": "^2.2.22",
+    "mongodb": "2.2.22",
     "q": "^1.5.0",
     "uuid": "^3.0.1"
   },
@@ -43,8 +44,7 @@
     "grunt-mocha-test": "^0.13.2",
     "mocha": "^3.2.0",
     "sinon": "^2.1.0",
-    "superagent": "^3.5.2",
-    "supertest": "^3.0.0"
+    "superagent": "^3.5.2"
   },
   "license": "ISC"
 }
