@@ -7,7 +7,10 @@ const express = require("express"),
   mwAuthenticateRequest = require("./middleware_services/mwAuthenticateRequest"),
   mwErrorHandler = require("./middleware_services/mwErrorHandler"),
   mwAddRequestId = require("./middleware_services/mwAddRequestId"),
-  problem2Router = require("./endpoints/problem2");
+  mwGenerateUserToken = require("./middleware_services/mwGenerateUserToken"),
+  problem2Router = require("./endpoints/problem2"),
+  productRouter = require("./endpoints/product");
+
 
 let {NODE_ENV} = process.env,
   nodeEnv = NODE_ENV || "local",
@@ -29,6 +32,7 @@ app.set("secretKey", config.secretKey);
 app.use(mwAllowCrossDomain);
 app.use(bodyparser.json());
 
+// HealthCheck Endpoint --> GET ...v1/healthcheck
 app.get(`${urlPrefix}/healthcheck`, (req, res) => {
   res.send({"msg": "OK"});
 });
@@ -38,7 +42,14 @@ app.use(mwAddRequestId);
 
 app.use("/problem2", problem2Router);
 
+// JWT Authentication Implemented -- Generate Token
+app.post("/generateToken", mwGenerateUserToken);
+
+// JWT Authentication Implemented -- Verify Token & User
 app.use(mwAuthenticateRequest);
+
+// Simple Product Add, Delete, Edit, Search Routes
+app.use("/products", productRouter);
 
 app.use((req, res, next) => {
   let apiError = new ApiError("NotFound", "Resource doesn't exist", "", 404);
@@ -49,7 +60,7 @@ app.use(methodOverride);
 app.use(mwErrorHandler);
 
 app.listen(app.get("port"), () => {
-  // console.log(`Server is listening on port --> ${app.get("port")}`);
+  console.log(`Server is listening on port --> ${app.get("port")}`);
 });
 
 module.exports = app;

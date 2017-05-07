@@ -138,7 +138,14 @@ class GenericRepository {
   update({collection, query, document}) {
     return this.getMongoDBObject()
       .then(db => {
-        return Q.ninvoke(db.collection(collection), "update", query, document);
+        return Q.ninvoke(db.collection(collection), "updateOne", query, document);
+      });
+  }
+
+  remove({collection, document}) {
+    return this.getMongoDBObject()
+      .then(db => {
+        return Q.ninvoke(db.collection(collection), "deleteOne", document);
       });
   }
 }

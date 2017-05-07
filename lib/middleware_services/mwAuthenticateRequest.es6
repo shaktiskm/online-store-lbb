@@ -19,7 +19,7 @@ function mwAuthenticateRequest(req, res, next) {
 
   if (!token || !tokenRegex.test(token)) {
     console.log("mwAuthenticateRequest()//Authentication credentials were missing or incorrect.");
-    let err = new ApiError(req.id, "Unauthorized", "Authentication credentials missing or incorrect", 401);
+    let err = new ApiError(req.id, "Unauthorized", "Authentication credentials missing or incorrect", "", 401);
 
     return next(err);
   }
