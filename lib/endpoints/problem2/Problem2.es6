@@ -52,7 +52,7 @@ class Problem2Service {
           })
           .catch(err => {
             if (err.name === "MongoError") {
-              let apiError = new ApiError("DuplicateError", "Duplicate Document Error", "", 400);
+              let apiError = new ApiError(req.id, "DuplicateError", "Duplicate Document Error", "", 400);
 
               console.log("saveAssociatedCategory()// Going to create duplicate document in db --> ", err.message);
               return next(apiError);
@@ -63,7 +63,7 @@ class Problem2Service {
       }
 
     } catch (err) {
-      let apiErr = new ApiError("ValidationError", "Bad Request", err, 400);
+      let apiErr = new ApiError(req.id, "ValidationError", "Bad Request", err, 400);
 
       console.log("saveAssociatedCategory()//Error in validating schema ...", err);
 

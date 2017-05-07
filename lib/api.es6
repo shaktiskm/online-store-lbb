@@ -6,6 +6,7 @@ const express = require("express"),
   mwAllowCrossDomain = require("./middleware_services/mwAllowCrossDomain"),
   mwAuthenticateRequest = require("./middleware_services/mwAuthenticateRequest"),
   mwErrorHandler = require("./middleware_services/mwErrorHandler"),
+  mwAddRequestId = require("./middleware_services/mwAddRequestId"),
   problem2Router = require("./endpoints/problem2");
 
 let {NODE_ENV} = process.env,
@@ -33,6 +34,7 @@ app.get(`${urlPrefix}/healthcheck`, (req, res) => {
 });
 
 // App routes here
+app.use(mwAddRequestId);
 
 app.use("/problem2", problem2Router);
 
