@@ -9,7 +9,7 @@ describe("The first level authentication", () => {
 
   describe("when valid token is present", () => {
 
-    let validToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmFjdGljZU5hbWUiOiJjYW50YWhlYWx0aCIsImlhdCI6MTQ4MjM5NjE2NSwiZXhwIjoxNTEzOTMyMTY1fQ.9UsC8BzokREFOFBbGFKVNzBIu15W_f7nKPO_4g1XUGk";
+    let validToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJzaGFrdGlza21AZ21haWwuY29tIiwiaWF0IjoxNDk0MjQyMTA1LCJleHAiOjE0OTQ4NDY5MDV9.AtJNVBg-jvDkr3oX8gb50BNj_i9rfxEdzHz3akUu8fk";
 
     it("should pass a post request", done => {
 

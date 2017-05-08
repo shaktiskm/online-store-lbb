@@ -19,7 +19,7 @@ function mwGenerateUserToken(req, res, next) {
   }
 
   payloadData = {
-    "emailId": payload.userId
+    "userId": payload.userId
   };
 
   try {
