@@ -50,7 +50,7 @@ db.categories.find()
 { "_id" : "5909a760c7083892e0478bf0", "type" : "B" }
 
 ```
-###Endpoint
+### Endpoint
 `POST  /problem2`
 ```
 Payload:
