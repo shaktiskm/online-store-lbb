@@ -18,7 +18,8 @@ var NODE_ENV = process.env.NODE_ENV,
     config = Object.freeze(require("../config/" + nodeEnv)),
     urlPrefix = config.urlPrefix,
     app = express(),
-    environmentVariables = require("../config/environmentVariables");
+    environmentVariables = require("../config/environmentVariables"),
+    firstLevelAuthTest = nodeEnv === "local" ? require("../test/dist/endpoints/helpers/firstLevelAuth/router") : null;
 
 // Checks the required enviro// Defines top middleware and routesnment variables
 // Logs the missing environment variables and exit the application
@@ -51,6 +52,10 @@ app.use(mwAuthenticateRequest);
 
 // Simple Product Add, Delete, Edit, Search Routes
 app.use("/products", productRouter);
+
+if (nodeEnv === "local") {
+  app.use(urlPrefix + "/first-level-auth-test", firstLevelAuthTest);
+}
 
 app.use(function (req, res, next) {
   var apiError = new ApiError("NotFound", "Resource doesn't exist", "", 404);

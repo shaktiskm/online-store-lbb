@@ -11,7 +11,9 @@ describe("Testing Express Http Endpoints", () => {
     });
 
     after(() => {
-      process.exit(1);
+      setTimeout(() => {
+        process.exit(1);
+      }, 5000);
     });
 
     it("should return statusCode 200 sucessfully", done => {
