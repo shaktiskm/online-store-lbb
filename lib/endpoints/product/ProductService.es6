@@ -25,7 +25,9 @@ class ProductService {
 
   retrieveProducts(req, res, next) {
     let collection = this.collection,
-      query = {};
+      query = {
+        "body": {}
+      };
 
     this._dbService
       .read({collection, query})
@@ -74,13 +76,15 @@ class ProductService {
     let collection = this.collection,
       productId = req.params.id,
       query = {
-        "_id": productId
+        "body": {
+          "_id": productId
+        }
       };
 
     this._dbService
       .read({collection, query})
       .then(result => {
-        console.log(`retrieveProductById()//Successfully retrieved product with id ${productId}`);
+        console.log(`retrieveProductById()//Successfully retrieved product with id ${productId}`, result);
         let successResponse = {
           "reqId": req.id,
           "status": "success",

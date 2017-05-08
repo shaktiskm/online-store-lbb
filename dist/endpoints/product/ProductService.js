@@ -21,7 +21,9 @@ var ProductService = function () {
     key: "retrieveProducts",
     value: function retrieveProducts(req, res, next) {
       var collection = this.collection,
-          query = {};
+          query = {
+        "body": {}
+      };
 
       this._dbService.read({ collection: collection, query: query }).then(function (result) {
         console.log("retrieveProducts()//Successfully retrieved products");
@@ -65,11 +67,13 @@ var ProductService = function () {
       var collection = this.collection,
           productId = req.params.id,
           query = {
-        "_id": productId
+        "body": {
+          "_id": productId
+        }
       };
 
       this._dbService.read({ collection: collection, query: query }).then(function (result) {
-        console.log("retrieveProductById()//Successfully retrieved product with id " + productId);
+        console.log("retrieveProductById()//Successfully retrieved product with id " + productId, result);
         var successResponse = {
           "reqId": req.id,
           "status": "success",
