@@ -1,5 +1,4 @@
-# online-store-lbb
-
+# restful-api-lbb
 
 ## Setup
 
